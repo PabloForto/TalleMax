@@ -1,15 +1,21 @@
 package com.forto.tallemax.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
+
+
 
 @Entity
+@Table(name = "usuario")
 public class Usuario {
 
 	@Id
 	@GeneratedValue(strategy =  GenerationType.IDENTITY)
+	@Column(name = "idUsuario")
 	private Integer idUsuario;
 	private String  nombre;
 	private String apellido;
@@ -18,7 +24,6 @@ public class Usuario {
 	private String email;
 	private String telefono;
 	private Integer estatus;
-	
 	/**
 	 * @return the idUsuario
 	 */
@@ -116,5 +121,33 @@ public class Usuario {
 		this.estatus = estatus;
 	}
 	
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((idUsuario == null) ? 0 : idUsuario.hashCode());
+		return result;
+	}
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Usuario other = (Usuario) obj;
+		if (idUsuario == null) {
+			if (other.idUsuario != null)
+				return false;
+		} else if (!idUsuario.equals(other.idUsuario))
+			return false;
+		return true;
+	}
+	
+	
+
 	
 }
+
+
